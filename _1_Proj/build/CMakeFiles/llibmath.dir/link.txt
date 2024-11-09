@@ -1,0 +1,2 @@
+/usr/bin/ar qc /home/xking/Project/sys_program/_1_Proj/lib/libllibmath.a CMakeFiles/llibmath.dir/src/Add.cpp.o CMakeFiles/llibmath.dir/src/Div.cpp.o CMakeFiles/llibmath.dir/src/Mul.cpp.o CMakeFiles/llibmath.dir/src/Sub.cpp.o CMakeFiles/llibmath.dir/src/swap.cpp.o
+/usr/bin/ranlib /home/xking/Project/sys_program/_1_Proj/lib/libllibmath.a

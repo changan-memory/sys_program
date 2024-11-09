@@ -1,0 +1,1 @@
+/usr/bin/g++  -g -O2 -Wall -g CMakeFiles/proj_exe.dir/main.cpp.o -o proj_exe 

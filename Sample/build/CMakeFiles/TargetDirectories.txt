@@ -1,0 +1,3 @@
+/home/xking/Project/sys_program/Sample/build/CMakeFiles/proj_exe.dir
+/home/xking/Project/sys_program/Sample/build/CMakeFiles/edit_cache.dir
+/home/xking/Project/sys_program/Sample/build/CMakeFiles/rebuild_cache.dir

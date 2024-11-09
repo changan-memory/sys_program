@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "cmake_swap",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "cal::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cal-Debug-47133c1e5691194f19e6.json",
+					"name" : "cal",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "math::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-math-Debug-d8766035c1724c096d33.json",
+					"name" : "math",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "proj_exe::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-proj_exe-Debug-1569b94b78777aecf776.json",
+					"name" : "proj_exe",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/xking/Project/sys_program/_1_Proj/build",
+		"source" : "/home/xking/Project/sys_program/_1_Proj"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

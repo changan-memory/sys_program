@@ -1,0 +1,2 @@
+/usr/bin/ar qc /home/xking/Project/sys_program/_1_Proj/lib/libswap.a CMakeFiles/swap.dir/src/math/Add.cpp.o CMakeFiles/swap.dir/src/math/Div.cpp.o CMakeFiles/swap.dir/src/math/Mul.cpp.o CMakeFiles/swap.dir/src/math/Sub.cpp.o CMakeFiles/swap.dir/src/swap/swap.cpp.o
+/usr/bin/ranlib /home/xking/Project/sys_program/_1_Proj/lib/libswap.a

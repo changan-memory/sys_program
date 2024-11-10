@@ -2,7 +2,7 @@ BasedOnStyle: Google
 IndentWidth: 4                    # 缩进宽度为 2 空格
 TabWidth: 4                        # Tab 的宽度（Google 风格推荐 2 空格）
 # UseTab: Never                      # 禁用 Tab，始终使用空格缩进
-ColumnLimit: 80                    # 每行代码的最大字符数为 80
+ColumnLimit: 200                  # 每行代码的最大字符数为 80
 AllowShortIfStatementsOnASingleLine: false   # 单行 if 语句保持清晰
 DerivePointerAlignment: false      # 禁用自动推导指针对齐
 PointerAlignment: Left             # 指针对齐到左侧

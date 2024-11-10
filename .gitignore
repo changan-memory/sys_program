@@ -5,3 +5,5 @@
 !**/build/proj_exe
 
 **/build/**
+
+./**/**/build

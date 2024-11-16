@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
         // execlp("ls", "ls", "-l", "-h", "-a", NULL);  // 结尾需要加上 NULL作为哨兵
         // execlp("date", "date", NULL);  // 结尾需要加上 NULL作为哨兵
 
-        //execl("./test", "./test", NULL);     // 执行自定义的程序
+        // execl("./test", "./test", NULL);  // 执行自定义的程序
         execl("/bin/ls", "ls", "-l", NULL);  // 用execl 执行系统自带的程序
 
         cerr << "execlp error" << endl;

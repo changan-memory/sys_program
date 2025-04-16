@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/xking/Project/sys_program/Sample/build",
-  "command": "/usr/bin/g++  -I/home/xking/Project/sys_program/Sample/include  -g -O2 -Wall -g -o CMakeFiles/proj_exe.dir/main.cpp.o -c /home/xking/Project/sys_program/Sample/main.cpp",
-  "file": "/home/xking/Project/sys_program/Sample/main.cpp",
-  "output": "CMakeFiles/proj_exe.dir/main.cpp.o"
-}
-]

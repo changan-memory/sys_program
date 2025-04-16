@@ -1,1 +1,0 @@
-/usr/bin/c++  -g -g CMakeFiles/proj_exe.dir/src/main.cpp.o -o proj_exe 

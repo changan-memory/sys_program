@@ -1,3 +1,0 @@
-/home/yuxiang/Project/sys_program/Functions/Read_dev_block/build/CMakeFiles/proj_exe.dir
-/home/yuxiang/Project/sys_program/Functions/Read_dev_block/build/CMakeFiles/edit_cache.dir
-/home/yuxiang/Project/sys_program/Functions/Read_dev_block/build/CMakeFiles/rebuild_cache.dir

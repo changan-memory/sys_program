@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/xking/Project/sys_program/Read_and_copy/build",
-  "command": "/usr/bin/g++  -I/home/xking/Project/sys_program/Read_and_copy/include  -g -O2 -Wall -g -o CMakeFiles/proj_exe.dir/main.cpp.o -c /home/xking/Project/sys_program/Read_and_copy/main.cpp",
-  "file": "/home/xking/Project/sys_program/Read_and_copy/main.cpp",
-  "output": "CMakeFiles/proj_exe.dir/main.cpp.o"
-}
-]

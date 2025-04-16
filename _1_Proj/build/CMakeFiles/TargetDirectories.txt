@@ -1,5 +1,0 @@
-/home/xking/Project/sys_program/_1_Proj/build/CMakeFiles/math.dir
-/home/xking/Project/sys_program/_1_Proj/build/CMakeFiles/cal.dir
-/home/xking/Project/sys_program/_1_Proj/build/CMakeFiles/proj_exe.dir
-/home/xking/Project/sys_program/_1_Proj/build/CMakeFiles/edit_cache.dir
-/home/xking/Project/sys_program/_1_Proj/build/CMakeFiles/rebuild_cache.dir

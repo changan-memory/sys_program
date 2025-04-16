@@ -1,1 +1,0 @@
-/usr/bin/g++ -fPIC  -g -O2 -Wall -g -shared -Wl,-soname,libmath.so.so -o /home/xking/Project/sys_program/_1_Proj/lib/libmath.so.so CMakeFiles/math.so.dir/src/Add.cpp.o CMakeFiles/math.so.dir/src/Div.cpp.o CMakeFiles/math.so.dir/src/Mul.cpp.o CMakeFiles/math.so.dir/src/Sub.cpp.o CMakeFiles/math.so.dir/src/swap.cpp.o 

@@ -1,1 +1,0 @@
-/usr/bin/g++ -fPIC  -g -O2 -Wall -g -shared -Wl,-soname,libcal.so -o /home/xking/Project/sys_program/_1_Proj/lib/libcal.so CMakeFiles/cal.dir/src/Add.cpp.o CMakeFiles/cal.dir/src/Div.cpp.o CMakeFiles/cal.dir/src/Mul.cpp.o CMakeFiles/cal.dir/src/Print.cpp.o CMakeFiles/cal.dir/src/Sub.cpp.o CMakeFiles/cal.dir/src/swap.cpp.o 

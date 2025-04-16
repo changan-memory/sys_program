@@ -1,3 +1,0 @@
-/home/yuxiang/Project/sys_program/Functions/stat/build/CMakeFiles/proj_exe.dir
-/home/yuxiang/Project/sys_program/Functions/stat/build/CMakeFiles/edit_cache.dir
-/home/yuxiang/Project/sys_program/Functions/stat/build/CMakeFiles/rebuild_cache.dir

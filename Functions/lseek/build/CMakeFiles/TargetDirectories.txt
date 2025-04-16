@@ -1,3 +1,0 @@
-/home/yuxiang/Project/sys_program/Functions/lseek/build/CMakeFiles/proj_exe.dir
-/home/yuxiang/Project/sys_program/Functions/lseek/build/CMakeFiles/edit_cache.dir
-/home/yuxiang/Project/sys_program/Functions/lseek/build/CMakeFiles/rebuild_cache.dir

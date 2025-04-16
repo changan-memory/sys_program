@@ -1,0 +1,17 @@
+hello world
+hello world
+
+hello name
+
+hello Name
+
+hello NAME
+
+123456
+123456789
+
+ls
+cat
+LS
+
+

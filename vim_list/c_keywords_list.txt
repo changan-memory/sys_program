@@ -1,0 +1,129 @@
+" C11 基本关键字
+auto            _Alignas         _Generic         unsigned
+break           _Alignof         _Imaginary       void
+case            _Atomic          inline           volatile
+char            _Bool            int              while
+const           _Complex         long             
+continue        _Generic         register        
+default         _Noreturn        restrict         
+do              _Static_assert   return          
+double          _Thread_local    short            
+else            auto             signed           
+enum            const            sizeof           
+extern          double           static           
+float           else             struct           
+for             enum             switch           
+goto            extern           typedef          
+
+" C11 新增标准库组件
+" -------------------------------
+" stdatomic.h
+syntax keyword cSTLtype atomic_bool
+syntax keyword cSTLtype atomic_char atomic_schar atomic_uchar
+syntax keyword cSTLtype atomic_short atomic_ushort
+syntax keyword cSTLtype atomic_int atomic_uint atomic_long atomic_ulong
+syntax keyword cSTLtype atomic_llong atomic_ullong atomic_size_t atomic_ptrdiff_t
+syntax keyword cSTLconstant ATOMIC_VAR_INIT ATOMIC_FLAG_INIT
+syntax keyword cSTLconstant memory_order_relaxed memory_order_consume memory_order_acquire
+syntax keyword cSTLconstant memory_order_release memory_order_acq_rel memory_order_seq_cst
+
+" threads.h
+syntax keyword cSTLtype thrd_t mtx_t cnd_t tss_t
+syntax keyword cSTLtype once_flag thrd_start_t
+syntax keyword cSTLconstant thrd_success thrd_error thrd_nomem thrd_timedout
+syntax keyword cSTLconstant mtx_plain mtx_recursive mtx_timed
+syntax keyword cSTLfunction thrd_create thrd_join thrd_detach
+syntax keyword cSTLfunction mtx_init mtx_lock mtx_timedlock mtx_unlock
+
+" stdnoreturn.h
+syntax keyword cSTLconstant noreturn
+
+" 通用标准库扩展
+" -------------------------------
+" stdio.h (C11扩展)
+syntax keyword cSTLfunction fopen_s
+syntax keyword cSTLfunction freopen_s
+syntax keyword cSTLfunction tmpfile_s
+syntax keyword cSTLfunction gets_s
+syntax keyword cSTLconstant L_tmpnam_s
+
+" stdlib.h (C11扩展)
+syntax keyword cSTLfunction aligned_alloc
+syntax keyword cSTLfunction quick_exit
+syntax keyword cSTLfunction at_quick_exit
+syntax keyword cSTLconstant EXIT_SUCCESS EXIT_FAILURE
+
+" string.h (C11边界检查)
+syntax keyword cSTLfunction memcpy_s
+syntax keyword cSTLfunction memmove_s
+syntax keyword cSTLfunction strcpy_s
+syntax keyword cSTLfunction strcat_s
+syntax keyword cSTLfunction strtok_s
+
+" 核心标准库组件
+" -------------------------------
+" 基本类型/常量
+syntax keyword cSTLconstant NULL
+syntax keyword cSTLconstant true false
+syntax keyword cSTLconstant __STDC_VERSION__
+
+" 常用类型
+syntax keyword cSTLtype size_t ptrdiff_t 
+syntax keyword cSTLtype int8_t int16_t int32_t int64_t
+syntax keyword cSTLtype uint8_t uint16_t uint32_t uint64_t
+syntax keyword cSTLtype intptr_t uintptr_t
+syntax keyword cSTLtype max_align_t
+
+" 输入输出 (stdio.h)
+syntax keyword cSTLtype FILE
+syntax keyword cSTLfunction printf scanf sprintf sscanf
+syntax keyword cSTLfunction fopen fclose fread fwrite
+syntax keyword cSTLfunction fgets fputs getchar putchar
+syntax keyword cSTLconstant stdin stdout stderr
+syntax keyword cSTLconstant SEEK_SET SEEK_CUR SEEK_END
+
+" 内存管理 (stdlib.h)
+syntax keyword cSTLfunction malloc calloc realloc free
+syntax keyword cSTLfunction exit atexit abort
+syntax keyword cSTLfunction atoi atol atoll strtol strtoll
+
+" 字符串处理 (string.h)
+syntax keyword cSTLfunction memcpy memmove memset
+syntax keyword cSTLfunction strcpy strncpy strcat strncat
+syntax keyword cSTLfunction strlen strcmp strncmp
+syntax keyword cSTLfunction strchr strrchr strstr
+
+" 数学函数 (math.h)
+syntax keyword cSTLfunction sin cos tan sqrt pow
+syntax keyword cSTLfunction log log10 exp fabs
+syntax keyword cSTLconstant INFINITY NAN HUGE_VAL
+
+" 时间处理 (time.h)
+syntax keyword cSTLtype time_t clock_t struct tm
+syntax keyword cSTLfunction time clock difftime
+syntax keyword cSTLfunction strftime mktime
+syntax keyword cSTLconstant CLOCKS_PER_SEC
+
+" 字符处理 (ctype.h)
+syntax keyword cSTLfunction isalnum isalpha isdigit
+syntax keyword cSTLfunction islower isupper tolower toupper
+
+" 变长参数 (stdarg.h)
+syntax keyword cSTLtype va_list
+syntax keyword cSTLfunction va_start va_arg va_end va_copy
+
+" 断言 (assert.h)
+syntax keyword cSTLfunction assert static_assert
+
+" 复杂数 (complex.h)
+syntax keyword cSTLtype complex _Complex_I
+syntax keyword cSTLfunction creal cimag conj
+
+" 预处理器指令
+syntax keyword cPPdefine define include
+syntax keyword cPPdefine ifdef ifndef endif
+syntax keyword cPPdefine pragma error line
+syntax keyword cPPdefine _Pragma __DATE__ __TIME__
+
+" C11 泛型选择
+syntax keyword cPPkeyword _Generic

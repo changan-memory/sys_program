@@ -1,12 +1,52 @@
+---
+# 基于 Google 代码风格，但部分选项已自定义
 BasedOnStyle: Google
-IndentWidth: 4                    # 缩进宽度为 2 空格
-TabWidth: 4                        # Tab 的宽度（Google 风格推荐 2 空格）
-# UseTab: Never                      # 禁用 Tab，始终使用空格缩进
-ColumnLimit: 200                  # 每行代码的最大字符数为 80
-AllowShortIfStatementsOnASingleLine: false   # 单行 if 语句保持清晰
-DerivePointerAlignment: false      # 禁用自动推导指针对齐
-PointerAlignment: Left             # 指针对齐到左侧
-SpacesInAngles: false              # 模板参数中不加空格
-SpaceAfterCStyleCast: true         # C 风格转换后添加空格
-BreakBeforeBraces: Attach          # 大括号在同一行
-AllowShortFunctionsOnASingleLine: InlineOnly # 仅内联的短函数可以单行书写
+
+# 缩进与空格相关配置
+IndentWidth: 4                     # 缩进宽度为 4 空格（Google 默认是 2）
+TabWidth: 4                        # 每个 Tab 字符等价于 4 空格宽度
+UseTab: Never                      # 禁止使用 Tab，强制用空格缩进（Google 默认已启用）
+
+# 代码行长度控制
+ColumnLimit: 200                   # 每行最多 200 字符（Google 默认是 80，放宽限制）
+
+# 条件语句格式
+AllowShortIfStatementsOnASingleLine: false  # 禁止单行 if 语句（如 if (x) return; 必须换行）
+
+# 指针与引用对齐
+DerivePointerAlignment: false      # 禁用自动推导指针位置（强制手动指定）
+PointerAlignment: Left             # 指针符号 `*` 靠近左侧（如 int* a;）
+ReferenceAlignment: Left           # 引用符号 `&` 靠近左侧（如 const string& s）
+
+# 模板与泛型格式
+SpacesInAngles: false              # 禁止模板参数 `<T>` 内添加空格（如 vector<int> 而非 vector< int >）
+SpacesInSquareBrackets: false      # 禁止数组下标 `[]` 内添加空格（如 a[0] 而非 a[ 0 ]）
+
+# 类型转换格式
+SpaceAfterCStyleCast: true         # C 风格强制转换后添加空格（如 (int) x 而非 (int)x）
+
+# 大括号风格
+BreakBeforeBraces: Attach          # 大括号与语句同一行（如 if (x) {）
+AllowAllArgumentsOnNextLine: false # 函数参数必须全部换行或全部不换行
+
+# 函数与类定义格式
+AllowShortFunctionsOnASingleLine: InlineOnly  # 仅允许内联函数（如类内成员函数）单行书写
+AllowShortLoopsOnASingleLine: false           # 禁止单行循环（如 for (x) continue; 必须换行）
+
+# 空格与标点
+SpaceBeforeParens: ControlStatements  # 控制语句（if/for/while）的括号前加空格（如 if (x) ）
+SpacesInCStyleCastParentheses: false # C 风格强制转换的括号内不加空格（如 (int)x ）
+SpaceInEmptyParentheses: false       # 空括号内不加空格（如 func() 而非 func( ) ）
+
+# 注释格式（需 clang-format 12+）
+ReflowComments: true               # 自动重新格式化注释文本
+ColumnLimit: 200                   # 注释也遵循 200 字符行宽限制
+
+# 宏定义格式
+AlignAfterOpenBracket: DontAlign   # 宏定义中的括号不强制对齐
+AllowAllParametersOfDeclarationOnNextLine: false  # 函数声明参数必须全部换行或不换行
+
+# 附加语言特性
+Standard: Latest                   # 默认使用最新的 C++ 标准（如 C++20）
+JavaScriptQuotes: Double           # 对 JavaScript 字符串使用双引号（若混合使用 JS）
+SpacesInContainerLiterals: false   # 容器字面量（如 JSON）内不加空格

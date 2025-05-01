@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "progressbar.h": "c",
+        "stdio.h": "c"
+    }
+}

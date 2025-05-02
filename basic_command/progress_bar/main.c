@@ -37,17 +37,17 @@ void downLoad(callback_t cb) {
     printf("\n");  //防止命令行提示符影响效果
 }
 int main() {
-    // test();
-    printf("downLoan 1:\n");
-    downLoad(progressbar);
-    initBar();
-    printf("downLoan 2:\n");
-    downLoad(progressbar);
-    initBar();
-    printf("downLoan 3:\n");
-    downLoad(progressbar);
-    initBar();
-
+    // // test();
+    // printf("downLoan 1:\n");
+    // downLoad(progressbar);
+    // initBar();
+    // printf("downLoan 2:\n");
+    // downLoad(progressbar);
+    // initBar();
+    // printf("downLoan 3:\n");
+    // downLoad(progressbar);
+    // initBar();
+    progressbar(20000);
     //模拟调用进度条
     // int total = 1000, curr = 0;     //目前curr需要从0开始
     // while(curr <= total){

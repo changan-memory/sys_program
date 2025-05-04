@@ -1,5 +1,17 @@
 #include <unistd.h>
 
+// progressbar(20000);
+//模拟调用进度条
+// int total = 1000, curr = 0;     //目前curr需要从0开始
+// while(curr <= total){
+//     progressbar(curr * 100 / total);
+//     //模拟正在进行某种下载任务
+//     curr += 10;
+//     usleep(50000);
+//     //printf("\n");        //防止命令行提示符影响效果
+// }
+// printf("\n");        //防止命令行提示符影响效果
+
 #include "progressBar.h"
 
 void test() {
@@ -38,26 +50,14 @@ void downLoad(callback_t cb) {
 }
 int main() {
     // // test();
-    // printf("downLoan 1:\n");
-    // downLoad(progressbar);
-    // initBar();
-    // printf("downLoan 2:\n");
-    // downLoad(progressbar);
-    // initBar();
-    // printf("downLoan 3:\n");
-    // downLoad(progressbar);
-    // initBar();
-    progressbar(20000);
-    //模拟调用进度条
-    // int total = 1000, curr = 0;     //目前curr需要从0开始
-    // while(curr <= total){
-    //     progressbar(curr * 100 / total);
-    //     //模拟正在进行某种下载任务
-    //     curr += 10;
-    //     usleep(50000);
-    //     //printf("\n");        //防止命令行提示符影响效果
-    // }
-    // printf("\n");        //防止命令行提示符影响效果
-
+    printf("downLoan 1:\n");
+    downLoad(progressbar);
+    initBar();
+    printf("downLoan 2:\n");
+    downLoad(progressbar);
+    initBar();
+    printf("downLoan 3:\n");
+    downLoad(progressbar);
+    initBar();
     return 0;
 }

@@ -2,21 +2,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-void testGetPID() {
-    pid_t pid = getpid();
-    pid_t ppid = getppid();  // pid_t 本质是有符号整数
-    while (1) {
-        printf("I am a precess, my ID is %d, my parent ID is %d\n", pid, ppid);
-        sleep(1);
-    }
-}
-void test2() {
-    printf("before: only one line\n");
-    fork();
-    printf("after: only one line\n");
-    sleep(1);
-}
-
 int main() {
     printf("begin:我是一个进程, pid: %d, ppid: %d\n", getpid(), getppid());
     pid_t id = fork();
@@ -34,4 +19,19 @@ int main() {
         // error
     }
     return 0;
+}
+
+void testGetPID() {
+    pid_t pid = getpid();
+    pid_t ppid = getppid();  // pid_t 本质是有符号整数
+    while (1) {
+        printf("I am a precess, my ID is %d, my parent ID is %d\n", pid, ppid);
+        sleep(1);
+    }
+}
+void test2() {
+    printf("before: only one line\n");
+    fork();
+    printf("after: only one line\n");
+    sleep(1);
 }

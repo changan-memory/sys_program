@@ -20,12 +20,12 @@ void test2() {
 int main() {
     printf("begin:我是一个进程, pid: %d, ppid: %d\n", getpid(), getppid());
     pid_t id = fork();
-    if (id == 0) {  // 子进程分支 成功时，子进程的PID > 0
+    if (id == 0) {  // 子进程分支
         while (1) {
             printf("我是子进程, pid: %d, ppid: %d\n", getpid(), getppid());
             sleep(1);
         }
-    } else if (id > 0) {  // 父进程分支
+    } else if (id > 0) {  // 父进程分支 成功时，子进程的PID > 0  返回到父进程
         while (1) {
             printf("我是父进程, pid: %d, ppid: %d\n", getpid(), getppid());
             sleep(1);

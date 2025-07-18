@@ -38,3 +38,12 @@ int main() {
 
 //     return 0;
 // }
+// #include <stdio.h>
+
+// int main() {
+
+//     while1(1) {
+//         printf("hello Linux World\n");
+//     }
+//     return 0;
+// }

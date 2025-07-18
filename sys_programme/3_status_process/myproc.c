@@ -6,7 +6,7 @@ int main() {
     pid_t pid = fork();
     if (pid == 0) {
         // child
-        int cnt = 5;
+        int cnt = 500;
         while (cnt) {
             printf("I am child, pid: %d, ppid: %d, cnt: %d\n", getpid(), getppid(), cnt);
             cnt--;
@@ -15,7 +15,8 @@ int main() {
         exit(0);
     } else {
         // father
-        while (1) {
+        int cnt = 5;
+        while (cnt--) {
             printf("I am father, pid: %d, ppid: %d\n", getpid(), getppid());
             sleep(1);
         }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+// 验证孤儿进程和僵尸进程的模块
 int main() {
     pid_t pid = fork();
     if (pid == 0) {
@@ -26,6 +27,7 @@ int main() {
     return 0;
 }
 
+// 验证进程阻塞的模块
 // int main() {
 //     while (1) {
 //         sleep(1);
@@ -40,10 +42,11 @@ int main() {
 // }
 // #include <stdio.h>
 
+// 验证进程R和S的模块
 // int main() {
 
 //     while1(1) {
-//         printf("hello Linux World\n");
+//         //printf("hello Linux World\n");
 //     }
 //     return 0;
 // }

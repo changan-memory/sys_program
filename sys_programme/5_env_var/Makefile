@@ -1,6 +1,6 @@
-myproc:myproc.c
+mycmd:mycmd.c
 	@gcc -o $@ $^
 
 .PHONY:clean
 clean:
-	@rm -f myproc
+	@rm -f mycmd

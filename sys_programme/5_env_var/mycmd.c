@@ -3,19 +3,8 @@
 #include <string.h>
 #include <unistd.h>
 
-// 环境变量，可以让程序获取到当前系统中的用户是谁
-int main() {
-    // int i = 0;
-    // for (; i < 10; ++i) {
-    //     printf("hello %d\n", i);
-    // }
-    char who[32];
-    strcpy(who, getenv("USER"));
-    if (strcmp(who, "root") == 0) {
-        printf("你是root用户, 可以做任何事情\n");
-    } else {
-        printf("你是普通用户, 受到权限约束\n");
-    }
+int main(int argc, char* argv[], char* env[]) {
+    printf("MYVAL: %s\n", getenv("MYVAL"));
     return 0;
 }
 
@@ -27,7 +16,31 @@ int main() {
 //     // argv 和 env 的最后一个元素存储的是NULL，遍历到结尾时，条件自动为假，所以退出循环
 //     for (; env[i]; ++i) {
 //         // printf("argv[%d]->%s\n", i, env[i]);
-//         printf("%s\n", env[i]);
+//         printf("env[%d]->%s\n", i, env[i]);
+//     }
+//     return 0;
+// }
+
+// int main(int argc, char* argv[]) {
+//     int i = 0;
+//     for (; argv[i]; ++i) {
+//         printf("argv[%d]->%s\n", i, argv[i]);
+//     }
+//     return 0;
+// }
+
+// // 环境变量，可以让程序获取到当前系统中的用户是谁
+// int main() {
+//     // int i = 0;
+//     // for (; i < 10; ++i) {
+//     //     printf("hello %d\n", i);
+//     // }
+//     char who[32];
+//     strcpy(who, getenv("USER"));
+//     if (strcmp(who, "root") == 0) {
+//         printf("你是root用户, 可以做任何事情\n");
+//     } else {
+//         printf("你是普通用户, 受到权限约束\n");
 //     }
 //     return 0;
 // }

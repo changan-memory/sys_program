@@ -4,20 +4,20 @@
 #include <unistd.h>
 
 // 环境变量，可以让程序获取到当前系统中的用户是谁
-// int main() {
-//     // int i = 0;
-//     // for (; i < 10; ++i) {
-//     //     printf("hello %d\n", i);
-//     // }
-//     char who[32];
-//     strcpy(who, getenv("USER"));
-//     if (strcmp(who, "root") == 0) {
-//         printf("你是root用户, 可以做任何事情\n");
-//     } else {
-//         printf("你是普通用户, 受到权限约束\n");
-//     }
-//     return 0;
-// }
+int main() {
+    // int i = 0;
+    // for (; i < 10; ++i) {
+    //     printf("hello %d\n", i);
+    // }
+    char who[32];
+    strcpy(who, getenv("USER"));
+    if (strcmp(who, "root") == 0) {
+        printf("你是root用户, 可以做任何事情\n");
+    } else {
+        printf("你是普通用户, 受到权限约束\n");
+    }
+    return 0;
+}
 
 // C/C++ 程序 两张表  main函数的第三个参数
 // 1. 命令行参数 向量表  2. 环境变量 向量表   这两张表的结构一模一样
@@ -32,17 +32,17 @@
 //     return 0;
 // }
 
-// 通过C语言提供的 外部变量 environ 获取环境变量
-int main() {
-    int i = 0;
-    extern char** environ;
-    // argv 和 env 的最后一个元素存储的是NULL，遍历到结尾时，条件自动为假，所以退出循环
-    for (; environ[i]; ++i) {
-        // printf("argv[%d]->%s\n", i, env[i]);
-        printf("%s\n", environ[i]);
-    }
-    return 0;
-}
+// // 通过C语言提供的 外部变量 environ 获取环境变量
+// int main() {
+//     int i = 0;
+//     extern char** environ;
+//     // argv 和 env 的最后一个元素存储的是NULL，遍历到结尾时，条件自动为假，所以退出循环
+//     for (; environ[i]; ++i) {
+//         // printf("argv[%d]->%s\n", i, env[i]);
+//         printf("%s\n", environ[i]);
+//     }
+//     return 0;
+// }
 
 // // 遍历 argv的另一种方式
 // int main(int argc, char* argv[]) {
@@ -80,5 +80,10 @@ int main() {
 //     } else {
 //         printf("default功能\n");
 //     }
+//     return 0;
+// }
+
+// int main() {
+//     printf("我是: %s\n", getenv("USER"));
 //     return 0;
 // }

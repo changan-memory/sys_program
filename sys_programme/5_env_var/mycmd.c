@@ -3,10 +3,32 @@
 #include <string.h>
 #include <unistd.h>
 
-int main(int argc, char* argv[], char* env[]) {
-    printf("MYVAL: %s\n", getenv("MYVAL"));
+// 通过C语言提供的 外部变量 environ 获取环境变量
+int main() {
+    int i = 0;
+    extern char** environ;
+    for (; environ[i]; ++i) {
+        printf("%s\n", environ[i]);
+    }
     return 0;
 }
+
+// 验证 cd 命令
+// int main(int argc, char* argv[]) {
+//     printf("before change:\n");
+//     sleep(40);
+//     if (argc == 2) {
+//         chdir(argv[1]);
+//     }
+//     printf("change end:\n");
+//     sleep(20);
+//     return 0;
+// }
+
+// int main(int argc, char* argv[], char* env[]) {
+//     printf("MYVAL: %s\n", getenv("MYVAL"));
+//     return 0;
+// }
 
 // C/C++ 程序 两张表  main函数的第三个参数
 // 1. 命令行参数 向量表  2. 环境变量 向量表   这两张表的结构一模一样
@@ -41,18 +63,6 @@ int main(int argc, char* argv[], char* env[]) {
 //         printf("你是root用户, 可以做任何事情\n");
 //     } else {
 //         printf("你是普通用户, 受到权限约束\n");
-//     }
-//     return 0;
-// }
-
-// // 通过C语言提供的 外部变量 environ 获取环境变量
-// int main() {
-//     int i = 0;
-//     extern char** environ;
-//     // argv 和 env 的最后一个元素存储的是NULL，遍历到结尾时，条件自动为假，所以退出循环
-//     for (; environ[i]; ++i) {
-//         // printf("argv[%d]->%s\n", i, env[i]);
-//         printf("%s\n", environ[i]);
 //     }
 //     return 0;
 // }

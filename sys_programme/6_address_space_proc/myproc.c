@@ -33,7 +33,7 @@
 
 int g_val_1;        // 未初始化全局变量
 int g_val_2 = 100;  // 已初始化全局变量
-int main() {
+int main(int argc, char* argv[], char* env[]) {
     printf("code addr: %p\n", main);
     const char* str = "hello world";  // 字符串常量
     printf("read only string addr: %p\n", str);
@@ -48,6 +48,16 @@ int main() {
     printf("heap addr: %p\n", mem);    // 打印堆区地址
     printf("heap addr: %p\n", mem1);   // 打印堆区地址
     printf("heap addr: %p\n", mem2);   // 打印堆区地址
+    // 打印栈区的地址
+    printf("stack addr:%p\n", &mem);
+    printf("stack addr:%p\n", &mem1);
+    printf("stack addr:%p\n", &mem2);
+    // 打印命令行参数和环境变量的地址
+    int i = 0;
+    for (; argv[i]; ++i)
+        printf("argv[%d] addr: %p\n", i, argv[i]);
+    for (i = 0; env[i]; ++i)
+        printf("env[%d] addr: %p\n", i, env[i]);
     return 0;
 }
 

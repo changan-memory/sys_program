@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "progressbar.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "cerrno": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.sourceDirectory": "/home/changan_memory/sys_program/old/Process_cntl/exec"

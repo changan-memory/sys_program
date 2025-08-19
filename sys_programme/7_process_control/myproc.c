@@ -5,19 +5,54 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-int main() {
-    int ret = 0;
-    char* p = (char*) malloc(1000 * 1000 * 1000 * 4);
-    if (p == NULL) {
-        // 这么写，既能知道错误码，还能知道错误信息
-        printf("malloc error: %d, %s\n", errno, strerror(errno));
-        ret = errno;  // 还能将错误码转换成进程的退出码，让父进程也知道出错了
-    } else {
-        // 使用内存的逻辑
-        printf("malloc success\n");
-    }
-    return ret;
+// 8 进程退出 exit
+
+void show() {
+    printf("hello show 1\n");
+    printf("hello show 2\n");
+    printf("hello show 3\n");
+    printf("hello show 4\n");
+    // exit(13);
+    return;
 }
+int main() {
+    show();
+    printf("hello Linux\n");
+    return 12;
+}
+
+// // 7 confirm
+// int main() {
+//     while (1) {
+//         printf("hello Linux: pid: %d\n", getpid());
+//         sleep(1);
+//     }
+//     return 0;
+// }
+
+// 6 出异常的场景
+// int main() {
+//     // int a = 10;
+//     // a /= 0;
+//     int* p = NULL;
+//     *p = 10;
+//     return 0;
+// }
+
+//// 5
+// int main() {
+//     int ret = 0;
+//     char* p = (char*) malloc(1000 * 1000 * 1000 * 4);
+//     if (p == NULL) {
+//         // 这么写，既能知道错误码，还能知道错误信息
+//         printf("malloc error: %d, %s\n", errno, strerror(errno));
+//         ret = errno;  // 还能将错误码转换成进程的退出码，让父进程也知道出错了
+//     } else {
+//         // 使用内存的逻辑
+//         printf("malloc success\n");
+//     }
+//     return ret;
+// }
 
 // // 4
 // int main() {

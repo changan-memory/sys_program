@@ -5,21 +5,27 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-// 8 进程退出 exit
-
-void show() {
-    printf("hello show 1\n");
-    printf("hello show 2\n");
-    printf("hello show 3\n");
-    printf("hello show 4\n");
-    // exit(13);
-    return;
-}
+// 9  exit 和 _exit的区别
 int main() {
-    show();
-    printf("hello Linux\n");
-    return 12;
+    printf("You can see me   ");
+    sleep(1);
+    // exit(11);
+    _exit(11);
 }
+// // 8 进程退出 exit
+// void show() {
+//     printf("hello show 1\n");
+//     printf("hello show 2\n");
+//     printf("hello show 3\n");
+//     printf("hello show 4\n");
+//     // exit(13);
+//     return;
+// }
+// int main() {
+//     show();
+//     printf("hello Linux\n");
+//     return 12;
+// }
 
 // // 7 confirm
 // int main() {

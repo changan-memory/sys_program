@@ -1,0 +1,3 @@
+/home/changan_memory/sys_program/build/CMakeFiles/proj_exe.dir
+/home/changan_memory/sys_program/build/CMakeFiles/edit_cache.dir
+/home/changan_memory/sys_program/build/CMakeFiles/rebuild_cache.dir

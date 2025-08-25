@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/changan_memory/sys_program/build",
+  "command": "/usr/bin/g++ -I/home/changan_memory/sys_program/old/Process_cntl/exec/include  -g -g -o CMakeFiles/proj_exe.dir/src/main.cpp.o -c /home/changan_memory/sys_program/old/Process_cntl/exec/src/main.cpp",
+  "file": "/home/changan_memory/sys_program/old/Process_cntl/exec/src/main.cpp"
+}
+]

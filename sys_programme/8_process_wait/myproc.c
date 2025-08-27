@@ -25,7 +25,7 @@ int main() {
         // 父进程只会在循环内不断地创建子进程
         printf("creat child process: %d success\n", id);  // 这行代码只有父进程会执行
     }
-    sleep(10);
+    // sleep(10);
 
     // wait 一次只能等待任意一个子进程，如何等待多个进程
     // 等待多个进程时，任意一个子进程都不退出
@@ -61,13 +61,13 @@ int main() {
 //     }
 //     sleep(10);
 
-//     // wait 一次只能等待任意一个子进程，如何等待多个进程
-//     for (int i = 0; i < N; ++i) {
-//         pid_t id = wait(NULL);
-//         if (id > 0) {
-//             printf("wait %d success\n", id);
-//         }
+// // wait 一次只能等待任意一个子进程，如何等待多个进程
+// for (int i = 0; i < N; ++i) {
+//     pid_t id = wait(NULL);
+//     if (id > 0) {
+//         printf("wait %d success\n", id);
 //     }
+// }
 //     sleep(5);
 //     return 0;
 // }

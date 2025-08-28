@@ -6,13 +6,56 @@
 
 #define N 10
 
-// 非阻塞等待
-void runChild() {
-    int cnt = 5;
-    while (cnt) {
-        printf("I am child Process, pid: %d, ppid: %d\n", getpid(), getppid());
-        cnt--;
-        sleep(1);
+// 非阻塞等待 设计父进程做一些自己的工作
+#define TASK_NUM 10
+
+typedef void (*task_t)();  // 定义任务的函数指针
+task_t tasks[TASK_NUM];    // 定义函数指针数组
+
+// 设计任务
+void task1() {
+    printf("这是一个执行打印日志的任务, pid: %d\n", getpid());
+}
+void task2() {
+    printf("这是一个执行检测网络健康状态的一个任务, pid: %d\n", getpid());
+}
+void task3() {
+    printf("这是一个进行绘制图形界面的任务, pid: %d\n", getpid());
+}
+
+int AddTask(task_t task);
+
+void InitTask() {
+    for (int pos = 0; pos < TASK_NUM; ++pos)
+        tasks[pos] = NULL;
+    AddTask(task1);
+    AddTask(task2);
+    AddTask(task3);
+}
+int AddTask(task_t task) {
+    int pos = 0;
+    // 找可以添加任务的位置
+    for (; pos < TASK_NUM; ++pos) {
+        if (!tasks[pos])
+            break;
+    }
+    if (pos == TASK_NUM)
+        return -1;
+    tasks[pos] = task;
+    return 0;
+}
+
+void DelTask() {
+}
+void CheckTask() {
+}
+void UpdateTask() {
+}
+void ExecuteTask() {
+    for (int i = 0; i < TASK_NUM; ++i) {
+        if (!tasks[i])
+            continue;
+        tasks[i]();
     }
 }
 int main() {
@@ -31,9 +74,10 @@ int main() {
         exit(11);
     } else {
         int status = 0;
+        InitTask();
         while (1) {  // 轮询
             pid_t ret = waitpid(pid, &status, WNOHANG);
-            // 等待成功或失败，退出轮询
+            // 等待成功或失败，break退出轮询
             if (ret > 0) {
                 // 等待成功，获取子进程退出信息
                 if (WIFEXITED(status))
@@ -41,20 +85,63 @@ int main() {
                 else {
                     printf("进程退出异常\n");
                 }
-                break;
+                break;  // 如果有多个进程需要等待，这里不应该用break，可以维护一个计数器进行操作
             } else if (ret < 0) {
                 // 等待失败
                 printf("wait failed\n");
                 break;
             } else {
                 // ret == 0
-                printf("请问你运行完毕了吗？ 子进程还没有退出，再等等\n");
-                sleep(1);
+                // 父进程的工作 放在这个块中执行
+                ExecuteTask();
+                usleep(500000);
             }
         }
     }
     return 22;
 }
+
+// // 非阻塞等待
+// int main() {
+//     pid_t pid = fork();
+//     if (pid < 0) {
+//         perror("fork failed\n");
+//         return 1;
+//     } else if (pid == 0) {
+//         // child
+//         int cnt = 5;
+//         while (cnt) {
+//             printf("I am child, pid: %d, ppid: %d, cnt: %d\n", getpid(), getppid(), cnt);
+//             cnt--;
+//             sleep(1);
+//         }
+//         exit(11);
+//     } else {
+//         int status = 0;
+//         while (1) {  // 轮询
+//             pid_t ret = waitpid(pid, &status, WNOHANG);
+//             // 等待成功或失败，break退出轮询
+//             if (ret > 0) {
+//                 // 等待成功，获取子进程退出信息
+//                 if (WIFEXITED(status))
+//                     printf("子进程正常运行完毕，退出码 %d\n", WEXITSTATUS(status));
+//                 else {
+//                     printf("进程退出异常\n");
+//                 }
+//                 break;
+//             } else if (ret < 0) {
+//                 // 等待失败
+//                 printf("wait failed\n");
+//                 break;
+//             } else {
+//                 // ret == 0
+//                 printf("请问你运行完毕了吗？ 子进程还没有退出，再等等\n");
+//                 sleep(1);
+//             }
+//         }
+//     }
+//     return 22;
+// }
 
 // // waitpid 等待多个子进程
 // void runChild() {

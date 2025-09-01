@@ -1,6 +1,11 @@
+.PHONY:all
+all:otherExe mycommand
+
 mycommand:mycommand.c
-	@gcc -o $@ $^ -std=c99
+	gcc -o $@ $^ -std=c99
+otherExe:otherExe.cpp
+	g++ -o $@ $^ -std=c++11
 
 .PHONY:clean
 clean:
-	@rm -f mycommand
+	rm -f mycommand otherExe

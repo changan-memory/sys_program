@@ -3,17 +3,22 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-// 验证不同程序间 命令行参数和环境变量
+// 给子进程传新的环境变量
+// execle  使用自定义的环境变量
 int main() {
     pid_t id = fork();
-
+    extern char** environ;
     if (id == 0) {
         // child
         printf("before: I am a process pid: %d, ppid: %d\n", getpid(), getppid());
         sleep(3);
-        char* const myargv[] = {"otherExe", "-a", "-b", NULL};
-        execv("./otherExe", myargv);
+
+        // execle("./otherExe", "otherExe", "-a", "-b", NULL, environ);  // 传系统的环境变量
+
+        // 传自定义的环境变量
+        char* const myenv[] = {"MYVAL=123456", "MYPATH=/usr/bin/xxx", NULL};
+        execle("./otherExe", "otherExe", "-a", "-b", NULL, myenv);
+
         printf("after: I am a process pid: %d, ppid: %d\n", getpid(), getppid());
         exit(0);
     }
@@ -25,6 +30,54 @@ int main() {
     }
     return 0;
 }
+
+// // 1. putenv 添加环境变量
+// int main() {
+//     pid_t id = fork();
+//     putenv("MYPRIVATE_ENV=123456");
+//     if (id == 0) {
+//         // child
+//         printf("before: I am a process pid: %d, ppid: %d\n", getpid(), getppid());
+//         sleep(3);
+
+//         char* const myargv[] = {"otherExe", "-a", "-b", NULL};
+//         execv("./otherExe", myargv);
+
+//         printf("after: I am a process pid: %d, ppid: %d\n", getpid(), getppid());
+//         exit(0);
+//     }
+//     // father
+//     pid_t ret = waitpid(id, NULL, 0);  // 等待子进程，暂不关心进程退出状态，阻塞等待
+//     if (ret > 0) {
+//         printf("wait success, father: %d, ret %d\n", getpid(), ret);
+//         sleep(3);
+//     }
+//     return 0;
+// }
+
+// // 验证不同程序间 命令行参数和环境变量
+// int main() {
+//     pid_t id = fork();
+
+//     if (id == 0) {
+//         // child
+//         printf("before: I am a process pid: %d, ppid: %d\n", getpid(), getppid());
+//         sleep(3);
+
+//         char* const myargv[] = {"otherExe", "-a", "-b", NULL};
+//         execv("./otherExe", myargv);
+
+//         printf("after: I am a process pid: %d, ppid: %d\n", getpid(), getppid());
+//         exit(0);
+//     }
+//     // father
+//     pid_t ret = waitpid(id, NULL, 0);  // 等待子进程，暂不关心进程退出状态，阻塞等待
+//     if (ret > 0) {
+//         printf("wait success, father: %d, ret %d\n", getpid(), ret);
+//         sleep(3);
+//     }
+//     return 0;
+// }
 
 // // 通过使用验证各个exec系列函数的用法
 // int main() {
@@ -66,6 +119,7 @@ int main() {
 //     }
 //     return 0;
 // }
+
 // // 多进程 程序替换
 // int main() {
 //     pid_t id = fork();

@@ -27,6 +27,18 @@ int lastCode = 0;
 
 char* argv[ARGC_SIZE];  // 存储命令解析后的多个字符串
 
+char pwd[LINE_SIZE];  // 存储当前路径
+
+// export 环境变量的原理是
+// 把环境变量字符串的地址 填入到系统环境变量表中
+// 我们的环境变量是放在   char commandLine[LINE_SIZE]; 数组中的，和其他命令公用一块空间
+// 输入其他命令时，会把之前保存的环境变量覆盖掉，因此要再担负存储一份环境变量
+
+// 自定义环境变量表
+char myenv[LINE_SIZE];  // 存储一个环境变量
+// 自定义本地变量表
+char myVal[LINE_SIZE];  // 存储Shell本地变量
+
 const char* getUserName() {
     return getenv("USER");
 }
@@ -35,15 +47,16 @@ const char* getHostName() {
     return getenv("HOSTNAME");
 }
 
-const char* getPwd() {
-    return getenv("PWD");
+void getPwd() {
+    getcwd(pwd, sizeof(pwd));
 }
 
 void interact(char* cLine, int size) {
+    getPwd();
     if (strcmp("root", getUserName()) == 0)
-        printf("%s@hcss-ecs-dfa9:%s" LABEL_ROOT " ", getUserName(), getPwd());
+        printf("%s@hcss-ecs-dfa9:%s " LABEL_ROOT " ", getUserName(), pwd);
     else
-        printf("%s@hcss-ecs-dfa9:%s" LABEL_USER " ", getUserName(), getPwd());
+        printf("%s@hcss-ecs-dfa9:%s " LABEL_USER " ", getUserName(), pwd);
 
     char* s = fgets(cLine, size, stdin);
     assert(s);  // 就算直接输入回车，也输入了一个换行符，因此s一定不为空
@@ -70,6 +83,7 @@ void nomalExecute(char* _argv[]) {
     } else if (id == 0) {
         // 子进程执行指令
         // execvpe(argv[0], argv, environ);
+
         execvp(_argv[0], _argv);
         // 程序替换有可能失败  exec 没有成功返回值，只有失败返回值
         exit(EXIT_CODE);
@@ -83,9 +97,46 @@ void nomalExecute(char* _argv[]) {
         }
     }
 }
-// enum innerCommand {
 
-// };
+int buildCommand(int _argc, char* _argv[]) {
+    if (_argc == 2 && strcmp(_argv[0], "cd") == 0) {
+        // 通过环境变量获取路径比较麻烦，我们可以通过系统调用获取当前路径
+        chdir(_argv[1]);
+        getPwd();                           // 刷新当前路径
+        sprintf(getenv("PWD"), "%s", pwd);  // 将当前路径写入到环境变量
+        return 1;
+    }
+    // 处理 export 命令
+    else if (_argc == 2 && strcmp(_argv[0], "export") == 0) {
+        strcpy(myenv, _argv[1]);
+        putenv(myenv);
+        return 1;
+    }
+    // 处理 echo 命令
+    else if (_argc == 2 && strcmp(_argv[0], "echo") == 0) {
+        // lastCode 保存了上个子进程退出时的退出码 可以让用户通过 echo $? 获取到
+        if (strcmp(argv[1], "$?") == 0) {
+            printf("%d\n", lastCode);
+            lastCode = 0;
+        }
+        // 取环境变量
+        else if (*_argv[1] == '$') {
+            printf("%s\n", getenv(_argv[1] + 1));
+        }
+        //向终端输出文本
+        else {
+            // 自己学习一下 如何去掉引号
+            printf("%s\n", _argv[1]);
+        }
+        return 1;
+    }
+    // 给ls加颜色
+    if (strcmp(_argv[0], "ls") == 0) {
+        _argv[_argc++] = "--color";
+        _argv[_argc] = NULL;
+    }
+    return 0;
+}
 int main() {
     // 1. 初始化问题
 
@@ -100,15 +151,18 @@ int main() {
         int argc = splitString(commandLine, argv);
         if (argc == 0)
             continue;  // 什么都不输入时，继续等待舒服进行命令行解析
+
         // debug
         // for (int i = 0; argv[i]; i++)
         //     printf("%d: %s\n", i, argv[i]);
 
         // 4. 指令的判断  指令分为 普通命令和内建命令
-        // 执行内建命令
-        if (argc == 2 && strcmp(argv[0], "cd"))
 
-            // 5. 执行普通指令
+        // 执行内建命令 内建命令  本质就是 Shell 内部的一个函数
+        int n = buildCommand(argc, argv);
+
+        // 5. 执行普通指令
+        if (!n)
             nomalExecute(argv);
     }
 

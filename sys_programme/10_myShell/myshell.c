@@ -138,8 +138,6 @@ int buildCommand(int _argc, char* _argv[]) {
     return 0;
 }
 int main() {
-    // 1. 初始化问题
-
     // 2. 交互问题
     while (!quit) {
         interact(commandLine, sizeof(commandLine));

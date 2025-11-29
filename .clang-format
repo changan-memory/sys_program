@@ -26,7 +26,8 @@ SpacesInSquareBrackets: false      # 禁止数组下标 `[]` 内添加空格（�
 SpaceAfterCStyleCast: true         # C 风格强制转换后添加空格（如 (int) x 而非 (int)x）
 
 # 大括号风格
-BreakBeforeBraces: Attach          # 大括号与语句同一行（如 if (x) {）
+# BreakBeforeBraces: Attach          # 大括号与语句同一行（如 if (x) {）
+BreakBeforeBraces: Allman           # 大括号换行（如 if (x)\n{）
 AllowAllArgumentsOnNextLine: false # 函数参数必须全部换行或全部不换行
 
 # 函数与类定义格式

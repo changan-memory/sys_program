@@ -25,33 +25,36 @@ char commandLine[LINE_SIZE];
 int quit = 0;
 int lastCode = 0;
 
-char* argv[ARGC_SIZE];  // 存储命令解析后的多个字符串
-
 char pwd[LINE_SIZE];  // 存储当前路径
 
 // export 环境变量的原理是
 // 把环境变量字符串的地址 填入到系统环境变量表中
-// 我们的环境变量是放在   char commandLine[LINE_SIZE]; 数组中的，和其他命令公用一块空间
-// 输入其他命令时，会把之前保存的环境变量覆盖掉，因此要再担负存储一份环境变量
+// 我们的环境变量是放在   char commandLine[LINE_SIZE]; 数组中的，和其他命令共用一块空间
+// 输入其他命令时，会把之前保存的环境变量覆盖掉，因此要再单独存储一份环境变量
 
 // 自定义环境变量表
 char myenv[LINE_SIZE];  // 存储一个环境变量
+
 // 自定义本地变量表
 char myVal[LINE_SIZE];  // 存储Shell本地变量
 
-const char* getUserName() {
+const char* getUserName()
+{
     return getenv("USER");
 }
 
-const char* getHostName() {
+const char* getHostName()
+{
     return getenv("HOSTNAME");
 }
 
-void getPwd() {
+void getPwd()
+{
     getcwd(pwd, sizeof(pwd));
 }
 
-void interact(char* cLine, int size) {
+void interact(char* cLine, int size)
+{
     getPwd();
     if (strcmp("root", getUserName()) == 0)
         printf("%s@hcss-ecs-dfa9:%s " LABEL_ROOT " ", getUserName(), pwd);
@@ -67,7 +70,8 @@ void interact(char* cLine, int size) {
     cLine[strlen(cLine) - 1] = '\0';  // 读入的字符串为 "xxxx\n\0"，将\n改为字符串的结束标记\0即可
 }
 
-int splitString(char* cLine, char* _argv[]) {
+int splitString(char* cLine, char* _argv[])
+{
     int i = 0;
     _argv[i++] = strtok(cLine, DELIM);
     while (_argv[i++] = strtok(NULL, DELIM))  // 接着从上次的位置继续分割
@@ -75,31 +79,40 @@ int splitString(char* cLine, char* _argv[]) {
     return i - 1;
 }
 
-void nomalExecute(char* _argv[]) {
+void nomalExecute(char* _argv[])
+{
     pid_t id = fork();
-    if (id < 0) {
+    if (id < 0)
+    {
         perror("fork failed\n");
         return;
-    } else if (id == 0) {
+    }
+    else if (id == 0)
+    {
         // 子进程执行指令
         // execvpe(argv[0], argv, environ);
 
         execvp(_argv[0], _argv);
         // 程序替换有可能失败  exec 没有成功返回值，只有失败返回值
         exit(EXIT_CODE);
-    } else {
+    }
+    else
+    {
         // 父进程等待
         int status = 0;                          // 获取子进程的退出状态
         pid_t retPid = waitpid(id, &status, 0);  // 等待子进程，传入status 阻塞等待
-        if (retPid == id) {
+        if (retPid == id)
+        {
             // 等待成功的处理逻辑
             lastCode = WEXITSTATUS(status);
         }
     }
 }
 
-int buildCommand(int _argc, char* _argv[]) {
-    if (_argc == 2 && strcmp(_argv[0], "cd") == 0) {
+int buildCommand(int _argc, char* _argv[])
+{
+    if (_argc == 2 && strcmp(_argv[0], "cd") == 0)
+    {
         // 通过环境变量获取路径比较麻烦，我们可以通过系统调用获取当前路径
         chdir(_argv[1]);
         getPwd();                           // 刷新当前路径
@@ -107,41 +120,51 @@ int buildCommand(int _argc, char* _argv[]) {
         return 1;
     }
     // 处理 export 命令
-    else if (_argc == 2 && strcmp(_argv[0], "export") == 0) {
+    else if (_argc == 2 && strcmp(_argv[0], "export") == 0)
+    {
         strcpy(myenv, _argv[1]);
         putenv(myenv);
         return 1;
     }
     // 处理 echo 命令
-    else if (_argc == 2 && strcmp(_argv[0], "echo") == 0) {
+    else if (_argc == 2 && strcmp(_argv[0], "echo") == 0)
+    {
         // lastCode 保存了上个子进程退出时的退出码 可以让用户通过 echo $? 获取到
-        if (strcmp(argv[1], "$?") == 0) {
+        if (strcmp(_argv[1], "$?") == 0)
+        {
             printf("%d\n", lastCode);
             lastCode = 0;
         }
         // 取环境变量
-        else if (*_argv[1] == '$') {
+        else if (*_argv[1] == '$')
+        {
             printf("%s\n", getenv(_argv[1] + 1));
         }
         //向终端输出文本
-        else {
+        else
+        {
             // 自己学习一下 如何去掉引号
             printf("%s\n", _argv[1]);
         }
         return 1;
     }
     // 给ls加颜色
-    if (strcmp(_argv[0], "ls") == 0) {
+    if (strcmp(_argv[0], "ls") == 0)
+    {
         _argv[_argc++] = "--color";
         _argv[_argc] = NULL;
     }
     return 0;
 }
-int main() {
+int main()
+{
+    char* argv[ARGC_SIZE];  // 存储命令解析后的多个字符串
+
     // 2. 交互问题
-    while (!quit) {
+    while (!quit)
+    {
         interact(commandLine, sizeof(commandLine));
-        printf("echo: %s\n", commandLine);
+        // printf("echo: %s\n", commandLine);
 
         // 3. 子串切割问题，解析命令行
         // commandLine 已经取到命令了，接下来对字符串做解析切割

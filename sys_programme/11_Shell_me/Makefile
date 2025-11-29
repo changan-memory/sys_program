@@ -1,6 +1,6 @@
-myShell:myshell.c
-	gcc -o $@ $^ -std=c99
+myshell:myshell.c
+	@gcc -o $@ $^ -std=c99
 
 .PHONY:clean
 clean:
-	rm -rf myShell
+	@rm -f myshell

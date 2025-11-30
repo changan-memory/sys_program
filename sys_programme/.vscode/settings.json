@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "ostream": "cpp"
+        "*.py": "python",
+        "ostream": "cpp",
+        "unistd.h": "c",
+        "wait.h": "c"
     }
 }

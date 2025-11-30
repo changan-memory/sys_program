@@ -28,12 +28,12 @@ int lastCode = 0;
 char pwd[LINE_SIZE];  // 存储当前路径
 
 // export 环境变量的原理是
-// 把环境变量字符串的地址 填入到系统环境变量表中
-// 我们的环境变量是放在   char commandLine[LINE_SIZE]; 数组中的，和其他命令共用一块空间
+// putenv 只是把环境变量字符串的地址 填入到系统环境变量表中
+// 我们的环境变量是放在   char commandLine[LINE_SIZE] 数组中的，和其他解析后的命令共用一块空间
 // 输入其他命令时，会把之前保存的环境变量覆盖掉，因此要再单独存储一份环境变量
 
 // 自定义环境变量表
-char myenv[LINE_SIZE];  // 存储一个环境变量
+char myenv[LINE_SIZE];  // 自己实现的 环境变量标
 
 // 自定义本地变量表
 char myVal[LINE_SIZE];  // 存储Shell本地变量

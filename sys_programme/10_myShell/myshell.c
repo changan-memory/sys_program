@@ -92,8 +92,12 @@ void nomalExecute(char* _argv[])
         // 子进程执行指令
         // execvpe(argv[0], argv, environ);
 
-        execvp(_argv[0], _argv);
         // 程序替换有可能失败  exec 没有成功返回值，只有失败返回值
+        execvp(_argv[0], _argv);
+
+        // execvp 一旦执行成功，程序不会走到这里
+        // 走到这里表示 execvp 执行失败
+        perror("execvp");
         exit(EXIT_CODE);
     }
     else

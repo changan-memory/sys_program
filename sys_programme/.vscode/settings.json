@@ -3,6 +3,7 @@
         "*.py": "python",
         "ostream": "cpp",
         "unistd.h": "c",
-        "wait.h": "c"
+        "wait.h": "c",
+        "assert.h": "c"
     }
 }

@@ -34,7 +34,7 @@ char pwd[LINE_SIZE];  // 存储当前路径
 // 输入其他命令时，会把之前保存的环境变量覆盖掉，因此要再单独存储一份环境变量
 
 // 自定义环境变量表
-char* myenv[LINE_SIZE];  // 自己实现的 环境变量表
+char* myenv[LINE_SIZE];  // 全局变量，自动置为 NULL
 
 // 自定义本地变量表
 char myVal[LINE_SIZE];  // 存储Shell本地变量
@@ -231,23 +231,27 @@ int buildExecute(int _argc, char* _argv[])
 
 int main()
 {
+    char* argv[ARGC_SIZE];
+    // shell 本质是一个死循环
+
     while (!quit)
     {
         // 1. 输出命令行提示符号进行交互，并读取输入的命令字符串
-        getPwd();
-        if (strcmp(getUserName(), "root") == 0)
-            printf(LEFT "%s@hcss-ecs-dfa9:%s" RIGHT LABEL_ROOT, getUserName(), pwd);
-        else
-            printf(LEFT "%s@hcss-ecs-dfa9:%s" RIGHT LABEL_USER, getUserName(), pwd);
+        interact(commandLine, sizeof(commandLine));
 
-        char* str = fgets(commandLine, sizeof(commandLine), stdin);
-        assert(str);  // 即使直接输入回车，也有一个字符，因此str不可能为空
+        // 2. 对输入的命令进行命令行解析，，拆分为 指令名 + 选项
+        int argc = splitString(commandLine, argv, ARGC_SIZE);
 
-        // 下标 strlen(commandLine) 指向的为 '\0'，再减一定位到 末尾的换行符
-        commandLine[strlen(commandLine) - 1] = '\0';
+        // 3. 判断输入的指令是否有效，无效时什么都不做
+        if (argc == 0)
+            continue;
+        // 验证解析出来的字符串
+        for (int i = 0; argv[i]; ++i)
+            printf("[%d]->: %s\n", i, argv[i]);
 
-        // 验证结果，看读入的字符串是否正确
-        printf("test:: %s", str);
+        // 4. 判断是否是内建命令，内建命令调用Shell 内部的函数执行
+
+        // 5. 非内建命令，fork 出子进程, 执行命令
     }
     return 0;
 }

@@ -174,7 +174,7 @@ char pwd[LINE_SIZE];  // 存储当前路径
 // 自定义环境变量表
 char* myenv[LINE_SIZE];  // 自己实现的 环境变量表
 
-// 自定义本地变量表
+// 自定义本地变量表     当前 shell 存储本地变量的功能尚未实现
 char myVal[LINE_SIZE];  // 存储Shell本地变量
 
 const char* getUserName()
@@ -367,6 +367,18 @@ int buildExecute(int _argc, char* _argv[])
     return 0;
 }
 
+void destroyEnv()
+{
+    for (int i = 0; i < LINE_SIZE; ++i)
+    {
+        if (myenv[i])
+        {
+            free(myenv[i]);
+            myenv[i] = NULL;
+        }
+    }
+}
+
 int main()
 {
     char* argv[ARGC_SIZE];
@@ -376,7 +388,6 @@ int main()
     {
         // 1. 输出命令行提示符号进行交互，并读取输入的命令字符串
         interact(commandLine, sizeof(commandLine));
-
         // 2. 对输入的命令进行命令行解析，，拆分为 指令名 + 选项
         int argc = splitString(commandLine, argv, ARGC_SIZE);
 
@@ -395,5 +406,7 @@ int main()
         if (!isBuild)
             nomalExecute(argv);
     }
+
+    destroyEnv();
     return 0;
 }

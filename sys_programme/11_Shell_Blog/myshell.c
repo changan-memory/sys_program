@@ -250,8 +250,11 @@ int main()
             printf("[%d]->: %s\n", i, argv[i]);
 
         // 4. 判断是否是内建命令，内建命令调用Shell 内部的函数执行
+        int isBuild = buildExecute(argc, argv);
 
         // 5. 非内建命令，fork 出子进程, 执行命令
+        if (!isBuild)
+            nomalExecute(argv);
     }
     return 0;
 }

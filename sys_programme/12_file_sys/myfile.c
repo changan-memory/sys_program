@@ -1,6 +1,34 @@
+#include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
+
+// int main()
+// {
+//     umask(0);
+//     // int fd = open("log.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+//     int fd = open("log.txt", O_WRONLY | O_CREAT | O_APPEND, 0666);
+
+//     if (fd < 0)
+//     {
+//         perror("open file fail");
+//     }
+
+//     const char* message = "hello Linux";
+//     write(fd, message, strlen(message));
+//     close(fd);
+//     return 0;
+// }
+
+int main()
+{
+    printf("stdin->fd: %d\n", stdin->_fileno);
+    printf("stdout->fd: %d\n", stdout->_fileno);
+    printf("stderr->fd: %d\n", stderr->_fileno);
+    return 0;
+}
 
 // int main()
 // {
@@ -85,37 +113,38 @@
 
 // 测试代码
 // 系统调用级别的文件操作
-#define ONE (1 << 0)    // 1
-#define TWO (1 << 1)    // 2
-#define FOUR (1 << 2)   // 4
-#define EIGHT (1 << 3)  // 8
+// 可以用一个比特位来表示一个状态
+// #define ONE (1 << 0)    // 1
+// #define TWO (1 << 1)    // 2
+// #define FOUR (1 << 2)   // 4
+// #define EIGHT (1 << 3)  // 8
 
-void show(int flags)
-{
-    if (flags & ONE)
-        printf("hello function1: %d\n", (flags & ONE));
-    if (flags & TWO)
-        printf("hello function2: %d\n", (flags & TWO));
-    if (flags & FOUR)
-        printf("hello function4: %d\n", (flags & FOUR));
-    if (flags & EIGHT)
-        printf("hello function8 : %d\n", (flags & EIGHT));
-}
+// void show(int flags)
+// {
+//     if (flags & ONE)
+//         printf("hello function1: %d\n", (flags & ONE));
+//     if (flags & TWO)
+//         printf("hello function2: %d\n", (flags & TWO));
+//     if (flags & FOUR)
+//         printf("hello function4: %d\n", (flags & FOUR));
+//     if (flags & EIGHT)
+//         printf("hello function8 : %d\n", (flags & EIGHT));
+// }
 
-int main()
-{
-    printf("-----------------------------\n");
-    show(ONE);
-    printf("-----------------------------\n");
-    show(TWO);
-    printf("-----------------------------\n");
+// int main()
+// {
+//     printf("-----------------------------\n");
+//     show(ONE);
+//     printf("-----------------------------\n");
+//     show(TWO);
+//     printf("-----------------------------\n");
 
-    show(ONE | TWO);
-    printf("-----------------------------\n");
-    show(ONE | TWO | FOUR);
-    printf("-----------------------------\n");
-    show(ONE | FOUR);
-    printf("-----------------------------\n");
-    show(FOUR | EIGHT);
-    printf("-----------------------------\n");
-}
+//     show(ONE | TWO);
+//     printf("-----------------------------\n");
+//     show(ONE | TWO | FOUR);
+//     printf("-----------------------------\n");
+//     show(ONE | FOUR);
+//     printf("-----------------------------\n");
+//     show(FOUR | EIGHT);
+//     printf("-----------------------------\n");
+// }

@@ -7,9 +7,67 @@
 
 // int main()
 // {
+//     printf("stdin->fd: %d\n", stdin->_fileno);
+//     printf("stdout->fd: %d\n", stdout->_fileno);
+//     printf("stderr->fd: %d\n", stderr->_fileno);
+//     return 0;
+// }
+
+int main()
+{
+    close(1);
+    int res = printf("stdin->fd: %d\n", stdin->_fileno);
+    printf("stdout->fd: %d\n", stdout->_fileno);
+    printf("stderr->fd: %d\n", stderr->_fileno);
+
+    fprintf(stderr, "%d\n", res);
+    return 0;
+}
+
+// int main()
+// {
+//     char buf[1024];
+//     ssize_t s = read(0, buf, sizeof(buf) - 1);
+//     if (s < 0)
+//         return 1;
+//     buf[s] = '\0';
+
+//     const char* message = "hello Linux\n";
+//     write(1, message, strlen(message));
+//     write(2, message, strlen(message));
+//     printf("%s\n", buf);
+//     return 0;
+// }
+
+// int main()
+// {
 //     umask(0);
-//     // int fd = open("log.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
-//     int fd = open("log.txt", O_WRONLY | O_CREAT | O_APPEND, 0666);
+//     int fd1 = open("log1.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+//     int fd2 = open("log2.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+//     int fd3 = open("log3.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+//     int fd4 = open("log4.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+
+//     if (fd1 < 0 || fd2 < 0 || fd3 < 0 || fd4 < 0)
+//     {
+//         perror("open file fail");
+//     }
+//     printf("fd1: %d\n", fd1);
+//     printf("fd2: %d\n", fd2);
+//     printf("fd3: %d\n", fd3);
+//     printf("fd4: %d\n", fd4);
+
+//     close(fd1);
+//     close(fd2);
+//     close(fd3);
+//     close(fd4);
+//     return 0;
+// }
+
+// int main()
+// {
+//     umask(0);
+//     int fd = open("log.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+//     // int fd = open("log.txt", O_WRONLY | O_CREAT | O_APPEND, 0666);
 
 //     if (fd < 0)
 //     {
@@ -22,13 +80,17 @@
 //     return 0;
 // }
 
-int main()
-{
-    printf("stdin->fd: %d\n", stdin->_fileno);
-    printf("stdout->fd: %d\n", stdout->_fileno);
-    printf("stderr->fd: %d\n", stderr->_fileno);
-    return 0;
-}
+// int main()
+// {
+//     // printf("stdin->fd: %d\n", stdin->_fileno);
+//     // printf("stdout->fd: %d\n", stdout->_fileno);
+//     // printf("stderr->fd: %d\n", stderr->_fileno);
+//     const char* message = "hello Linux";
+//     fprintf(stdout, "%s: %d\n", message, 1234);
+//     printf("%s: %d\n", message, 1234);
+//     fprintf(stderr, "%s: %d\n", message, 1234);
+//     return 0;
+// }
 
 // int main()
 // {
@@ -112,7 +174,7 @@ int main()
 // }
 
 // 测试代码
-// 系统调用级别的文件操作
+// 系统调用 常用的传参方式
 // 可以用一个比特位来表示一个状态
 // #define ONE (1 << 0)    // 1
 // #define TWO (1 << 1)    // 2

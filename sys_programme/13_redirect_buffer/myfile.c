@@ -7,31 +7,71 @@
 
 #define fileName "log.txt"
 
-// dup2 输入重定向
+// 标准输出1标准错误2有什么区别
 int main()
 {
-    int fd = open(fileName, O_RDONLY, 0666);
+    fprintf(stdout, "hello normal message\n");
+    fprintf(stdout, "hello normal message\n");
+    fprintf(stdout, "hello normal message\n");
+    fprintf(stdout, "hello normal message\n");
+    fprintf(stdout, "hello normal message\n");
 
-    if (fd < 0)
-    {
-        perror("open fail");
-        return 1;
-    }
+    fprintf(stderr, "hello error message\n");
+    fprintf(stderr, "hello error message\n");
+    fprintf(stderr, "hello error message\n");
+    fprintf(stderr, "hello error message\n");
+    fprintf(stderr, "hello error message\n");
 
-    // 输入重定向，本来是从标准输入 键盘读 现在是从文件读
-    dup2(fd, 0);
-
-    char buffer[1024];
-    ssize_t s = read(0, buffer, sizeof(buffer) - 1);
-    if (s > 0)
-    {
-        buffer[s] = '\0';
-        printf("echo#: %s\n", buffer);
-    }
-
-    close(fd);
     return 0;
 }
+
+// // dup2 输出重定向
+// // 这个代码与缓冲区有关
+// int main()
+// {
+//     int fd = open(fileName, O_CREAT | O_WRONLY | O_APPEND, 0666);
+
+//     if (fd < 0)
+//     {
+//         perror("open fail");
+//         return 1;
+//     }
+//     dup2(fd, 1);
+//     close(fd);
+
+//     printf("fd: %d\n", fd);
+//     printf("hello printf\n");
+//     fprintf(stdout, "hello fprintf\n");
+
+//     close(fd);
+//     return 0;
+// }
+
+// // dup2 输入重定向
+// int main()
+// {
+//     int fd = open(fileName, O_RDONLY, 0666);
+
+//     if (fd < 0)
+//     {
+//         perror("open fail");
+//         return 1;
+//     }
+
+//     // 输入重定向，本来是从标准输入键盘读 现在是从文件读
+//     dup2(fd, 0);
+
+//     char buffer[1024];
+//     ssize_t s = read(0, buffer, sizeof(buffer) - 1);
+//     if (s > 0)
+//     {
+//         buffer[s] = '\0';
+//         printf("echo#: %s\n", buffer);
+//     }
+
+//     close(fd);
+//     return 0;
+// }
 
 // // dup2 输出重定向
 // int main()
@@ -108,3 +148,4 @@ int main()
 //     close(fd);
 //     return 0;
 // }
+

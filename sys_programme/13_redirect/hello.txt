@@ -1,0 +1,23 @@
+total 80
+-rw-rw-r-- 1 changan_memory changan_memory   205 Feb 12 16:21 all.log
+-rwxrwxr-x 1 changan_memory changan_memory 17672 Feb 13 11:08 [0m[01;32ma.out[0m
+-rw-rw-r-- 1 changan_memory changan_memory   100 Feb 12 16:17 err.log
+-rw-rw-r-- 1 changan_memory changan_memory     0 Feb 13 11:08 hello.txt
+-rw-rw-r-- 1 changan_memory changan_memory    22 Feb 12 15:35 log.txt
+-rw-rw-r-- 1 changan_memory changan_memory    75 Feb 10 16:39 Makefile
+-rwxrwxr-x 1 changan_memory changan_memory 16048 Feb 12 15:56 [01;32mmyfile[0m
+-rw-rw-r-- 1 changan_memory changan_memory  3113 Feb 12 17:04 myfile.c
+-rw-rw-r-- 1 changan_memory changan_memory 14648 Feb 13 11:07 myshell.c
+-rw-rw-r-- 1 changan_memory changan_memory   105 Feb 12 16:17 normal.log
+-rw-rw-r-- 1 changan_memory changan_memory   235 Feb 12 22:00 struct.cpp
+all.log
+[0m[01;32ma.out[0m
+err.log
+hello.txt
+log.txt
+Makefile
+[01;32mmyfile[0m
+myfile.c
+myshell.c
+normal.log
+struct.cpp
